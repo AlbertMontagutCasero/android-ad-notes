@@ -5,10 +5,12 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 
+import com.google.android.gms.ads.AdListener;
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdSize;
 import com.google.android.gms.ads.AdView;
@@ -48,7 +50,38 @@ public class MainActivity extends AppCompatActivity {
         AdRequest adrequest = new AdRequest.Builder().build();
         adViewBottom.loadAd(adrequest);
 
+        // anadimos funciones de callback
+        adViewTop.setAdListener(new AdListener() {
+            @Override
+            public void onAdLoaded() {
+                Log.d("ad", "onAdLoaded: add loaded");
+            }
+
+            @Override
+            public void onAdFailedToLoad(int errorCode) {
+                Log.d("ad", "something goes bad error code : "+ errorCode);
+            }
+
+            @Override
+            public void onAdOpened() {
+                Log.d("ad", "onAdLoaded: the add is open ");
+            }
+
+            @Override
+            public void onAdLeftApplication() {
+                Log.d("ad", "onAdLoaded: add removed");
+
+            }
+
+            @Override
+            public void onAdClosed() {
+                Log.d("ad", "onAdLoaded: add closed by user");
+            }
+        });
     }
+
+
+
 
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
