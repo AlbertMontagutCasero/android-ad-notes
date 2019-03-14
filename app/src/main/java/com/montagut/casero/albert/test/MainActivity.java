@@ -51,7 +51,7 @@ public class MainActivity extends AppCompatActivity {
         adViewBottom.loadAd(adrequest);
 
         // anadimos funciones de callback
-        adViewTop.setAdListener(new AdListener() {
+        adViewBottom.setAdListener(new AdListener() {
             @Override
             public void onAdLoaded() {
                 Log.d("ad", "onAdLoaded: add loaded");
